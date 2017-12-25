@@ -1,0 +1,17 @@
+
+#Install below packages most important packages among them are twitteR and wordcloud.
+library(twitteR)
+#https://cran.r-project.org/web/packages/twitteR/twitteR.pdf
+library(RCurl)
+library(RJSONIO)
+library(stringr)
+library(tm)
+library(wordcloud)
+
+## consumer_key <- 'your_consumer_key'
+## consumer_secret <- 'your_consumer_secret'
+## access_token <- 'your_access_token'
+## access_secret <- 'your_access_secret'
+
+setup_twitter_oauth(consumer_key, consumer_secret, access_token, access_secret)
+
