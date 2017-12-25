@@ -1,0 +1,23 @@
+
+
+bcoin <- searchTwitter(searchString = "bitcoin", n=500, lang = "en", resultType = "recent")
+
+#to check the class 
+class(lcoin)
+
+bcoin <- sapply(bcoin, function(x) x$getText())
+
+#Creating corpus
+
+coin_corpus <- Corpus(VectorSource(bcoin))
+
+#Cleaing the data
+coin_corpus <- tm_map(coin_corpus, removePunctuation)
+coin_corpus <- tm_map(coin_corpus, content_transformer(tolower))
+coin_corpus <- tm_map(coin_corpus, removeWords, stopwords("english"))
+coin_corpus <- tm_map(coin_corpus, removeWords, c("lol", "lmao", "rofl", "wtf", "huh"))
+coin_corpus <- tm_map(coin_corpus, removeNumbers)
+coin_corpus <- tm_map(coin_corpus, stripWhitespace)
+
+#Last step get ready to see it. 
+wordcloud(coin_corpus, scale = c(2,1), min.freq = 5, colors = colorRampPalette(brewer.pal(9,"Dark2"))(32), random.color = TRUE)
